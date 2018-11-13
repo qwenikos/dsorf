@@ -40,6 +40,13 @@ INSTALLED_APPS = [
     'predictor',
     'crispy_forms'
 ]
+# added by nikos
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# end added by nikos
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

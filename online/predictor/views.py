@@ -13,9 +13,11 @@ def input_form(request):
         form = inputForm()
         print("GET")
     else:
-        form = inputForm(request.POST)
+        form = inputForm(request.POST, request.FILES)
         print("POST")
         if form.is_valid():
+            form.save()
+            return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})
             print ("-------------------------------------------------------")
             print ("A Valid form is submitted")
             print ("-------------------------------------------------------")
@@ -85,6 +87,7 @@ def input_form(request):
                 return HttpResponse(html)
             else:
                 print("form is invalid")
+                return JsonResponse({'error': True, 'errors': form.errors})
                 print(form.errors)
 
 
@@ -97,3 +100,20 @@ def results(request):
 
 def index(request):
     return render(request, 'index.html')
+
+
+from django.shortcuts import render
+from django.http import JsonResponse
+from .forms import inputForm
+
+def django_image_and_file_upload_ajax(request):
+    if request.method == 'POST':
+       form = inputForm(request.POST, request.FILES)
+       if form.is_valid():
+           form.save()
+           return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})
+       else:
+           return JsonResponse({'error': True, 'errors': form.errors})
+    else:
+        form = inputForm()
+        return render(request, 'django_image_upload_ajax.html', {'form': form})

@@ -8,3 +8,11 @@
 	border-radius: 5px;
     margin-bottom: 10px;
 }
+
+
+.jumbotron {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px dashed deeppink;
+}
