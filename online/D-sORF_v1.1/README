@@ -1,0 +1,49 @@
+Introduction
+---------------------------------------------------------------------
+D-sORF is an alignment-free data mining algorithm based on machine learning.
+The algorithm is based on the nucleotide composition of the ORF and the sequence
+information around the ATG start codon, called translation initiation site (TIS)
+. D-sORF distinguishes coding from non-coding transcripts and focuses on sequences
+with small ORFs. Provides a scoring system for predicting putative translating
+sORFs based on nucleotide context of three different windows (54 99 and 180-nts)
+within ORFs and a 9-nts window around TIS of experimentally validated CDSs of
+protein-coding genes compared to windows of similar size and location in negative
+sORFs.
+
+Installation
+------------------------------------------------------------------------
+D-sORF is written in Python (version 2.7 and above required) and requires the following Modules
+
+Bedtools suite is required and should be in the PATH. Bedtools can be found
+in http://code.google.com/p/bedtools/.
+
+Using D-sORF
+------------------------------------------------------------------------
+D-sORF directory structure
+
+/path/to/installation/dir/D-sORF
+
+
+..
+..
+..
+..
+..
+..
+
+
+Usage: python ...... [ ] ...
+
+            [OPTIONS]
+            --blablabla
+            --blablabla
+            --blablabla
+            
+DsORF example run:
+
+
+Please address any probles or comments to
+
+    blalbalbla@uth.gr
+
+            

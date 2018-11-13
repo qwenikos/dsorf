@@ -1,0 +1,230 @@
+fitting
+save model to disk final/tis/training/tisModelBinarize12_5000.pkl
+predict
+metrics
+===================
+0.753666666667
+===================
+/usr/lib/python2.7/dist-packages/scipy/sparse/coo.py:200: VisibleDeprecationWarning: `rank` is deprecated; use the `ndim` attribute or function instead. To find the rank of a matrix see `numpy.linalg.matrix_rank`.
+  if np.rank(self.data) != 1 or np.rank(self.row) != 1 or np.rank(self.col) != 1:
+(1008, 225, 1253, 514)
+classification_report:
+             precision    recall  f1-score   support
+
+         -1       0.71      0.85      0.77      1478
+          1       0.82      0.66      0.73      1522
+
+avg / total       0.76      0.75      0.75      3000
+
+python src/7_training.py  final/tis/positive/features/BinarizeNoATG_9nts.tab final/tis/negative/features/BinarizeNoATG_9nts.tab final/tis/training/ 5000 Y tisModelBinarizeNoATG9_5000.pkl
+argument are ok 
+shuffling
+splitting
+fitting
+save model to disk final/tis/training/tisModelBinarizeNoATG9_5000.pkl
+predict
+metrics
+===================
+0.719333333333
+===================
+/usr/lib/python2.7/dist-packages/scipy/sparse/coo.py:200: VisibleDeprecationWarning: `rank` is deprecated; use the `ndim` attribute or function instead. To find the rank of a matrix see `numpy.linalg.matrix_rank`.
+  if np.rank(self.data) != 1 or np.rank(self.row) != 1 or np.rank(self.col) != 1:
+(854, 139, 1304, 703)
+classification_report:
+             precision    recall  f1-score   support
+
+         -1       0.65      0.90      0.76      1443
+          1       0.86      0.55      0.67      1557
+
+avg / total       0.76      0.72      0.71      3000
+
+python src/7_training.py  final/tis/positive/features/Binarize_14nts.tab final/tis/negative/features/Binarize_14nts.tab final/tis/training/ 5000 Y cpModelBinarize14nt_5000.pkl
+argument are ok 
+shuffling
+splitting
+fitting
+save model to disk final/tis/training/cpModelBinarize14nt_5000.pkl
+predict
+metrics
+===================
+0.745
+===================
+/usr/lib/python2.7/dist-packages/scipy/sparse/coo.py:200: VisibleDeprecationWarning: `rank` is deprecated; use the `ndim` attribute or function instead. To find the rank of a matrix see `numpy.linalg.matrix_rank`.
+  if np.rank(self.data) != 1 or np.rank(self.row) != 1 or np.rank(self.col) != 1:
+(1007, 293, 1228, 472)
+classification_report:
+             precision    recall  f1-score   support
+
+         -1       0.72      0.81      0.76      1521
+          1       0.77      0.68      0.72      1479
+
+avg / total       0.75      0.74      0.74      3000
+
+*************
+********  3mers *********
+*****************
+python src/7_training.py  final/cp/positive/features/Vectorized_3mers.tab final/cp/negative/features/Vectorized_3mers.tab final/cp/training/ 5000 Y cpModel3Mers_5000.pkl
+argument are ok 
+shuffling
+splitting
+fitting
+save model to disk final/cp/training/cpModel3Mers_5000.pkl
+predict
+metrics
+===================
+0.861666666667
+===================
+/usr/lib/python2.7/dist-packages/scipy/sparse/coo.py:200: VisibleDeprecationWarning: `rank` is deprecated; use the `ndim` attribute or function instead. To find the rank of a matrix see `numpy.linalg.matrix_rank`.
+  if np.rank(self.data) != 1 or np.rank(self.row) != 1 or np.rank(self.col) != 1:
+(1192, 91, 1393, 324)
+classification_report:
+             precision    recall  f1-score   support
+
+         -1       0.81      0.94      0.87      1484
+          1       0.93      0.79      0.85      1516
+
+avg / total       0.87      0.86      0.86      3000
+
+*************
+****** 3mers 180nt *******
+*****************
+python src/7_training.py  final/cp/positive/features/Vectorized_180_3mers.tab final/cp/negative/features/Vectorized_180_3mers.tab final/cp/training/ 5000 Y cpModel3mers180_5000.pkl
+argument are ok 
+shuffling
+splitting
+fitting
+save model to disk final/cp/training/cpModel3mers180_5000.pkl
+predict
+metrics
+===================
+0.964
+===================
+/usr/lib/python2.7/dist-packages/scipy/sparse/coo.py:200: VisibleDeprecationWarning: `rank` is deprecated; use the `ndim` attribute or function instead. To find the rank of a matrix see `numpy.linalg.matrix_rank`.
+  if np.rank(self.data) != 1 or np.rank(self.row) != 1 or np.rank(self.col) != 1:
+(1437, 62, 1455, 46)
+classification_report:
+             precision    recall  f1-score   support
+
+         -1       0.97      0.96      0.96      1517
+          1       0.96      0.97      0.96      1483
+
+avg / total       0.96      0.96      0.96      3000
+
+*************
+****** 3mers 54nt *******
+*****************
+python src/7_training.py  final/cp/positive/features/Vectorized_54_3mers.tab final/cp/negative/features/Vectorized_54_3mers.tab final/cp/training/ 5000 Y cpModel3mers54_5000.pkl
+argument are ok 
+shuffling
+splitting
+fitting
+save model to disk final/cp/training/cpModel3mers54_5000.pkl
+predict
+metrics
+===================
+0.828
+===================
+/usr/lib/python2.7/dist-packages/scipy/sparse/coo.py:200: VisibleDeprecationWarning: `rank` is deprecated; use the `ndim` attribute or function instead. To find the rank of a matrix see `numpy.linalg.matrix_rank`.
+  if np.rank(self.data) != 1 or np.rank(self.row) != 1 or np.rank(self.col) != 1:
+(1110, 100, 1374, 416)
+classification_report:
+             precision    recall  f1-score   support
+
+         -1       0.77      0.93      0.84      1474
+          1       0.92      0.73      0.81      1526
+
+avg / total       0.84      0.83      0.83      3000
+
+*************
+****** 3mers 99nt *******
+*****************
+python src/7_training.py  final/cp/positive/features/Vectorized_99_3mers.tab final/cp/negative/features/Vectorized_99_3mers.tab final/cp/training/ 5000 Y cpModel3mers99_5000.pkl
+argument are ok 
+shuffling
+splitting
+fitting
+save model to disk final/cp/training/cpModel3mers99_5000.pkl
+predict
+metrics
+===================
+0.930666666667
+===================
+/usr/lib/python2.7/dist-packages/scipy/sparse/coo.py:200: VisibleDeprecationWarning: `rank` is deprecated; use the `ndim` attribute or function instead. To find the rank of a matrix see `numpy.linalg.matrix_rank`.
+  if np.rank(self.data) != 1 or np.rank(self.row) != 1 or np.rank(self.col) != 1:
+(1393, 100, 1399, 108)
+classification_report:
+             precision    recall  f1-score   support
+
+         -1       0.93      0.93      0.93      1499
+          1       0.93      0.93      0.93      1501
+
+avg / total       0.93      0.93      0.93      3000
+
+--------------------***180nt**-----------------------------------------
+python src/7_training.py  final/comb/positive/features/Vector_Comb_CP_TIS_180.tab final/comb/negative/features/Vector_Comb_CP_TIS_180.tab final/comb/training/ 5000 Y combModelBin9_Win180_5000.pkl
+argument are ok 
+shuffling
+splitting
+fitting
+save model to disk final/comb/training/combModelBin9_Win180_5000.pkl
+predict
+metrics
+===================
+0.975666666667
+===================
+/usr/lib/python2.7/dist-packages/scipy/sparse/coo.py:200: VisibleDeprecationWarning: `rank` is deprecated; use the `ndim` attribute or function instead. To find the rank of a matrix see `numpy.linalg.matrix_rank`.
+  if np.rank(self.data) != 1 or np.rank(self.row) != 1 or np.rank(self.col) != 1:
+(1525, 45, 1402, 28)
+classification_report:
+             precision    recall  f1-score   support
+
+         -1       0.98      0.97      0.97      1447
+          1       0.97      0.98      0.98      1553
+
+avg / total       0.98      0.98      0.98      3000
+
+--------------------***54nt**-----------------------------------------
+python src/7_training.py  final/comb/positive/features/Vector_Comb_CP_TIS_54.tab final/comb/negative/features/Vector_Comb_CP_TIS_54.tab final/comb/training/ 5000 Y combModelBin9_Win54_5000.pkl
+argument are ok 
+shuffling
+splitting
+fitting
+save model to disk final/comb/training/combModelBin9_Win54_5000.pkl
+predict
+metrics
+===================
+0.833333333333
+===================
+/usr/lib/python2.7/dist-packages/scipy/sparse/coo.py:200: VisibleDeprecationWarning: `rank` is deprecated; use the `ndim` attribute or function instead. To find the rank of a matrix see `numpy.linalg.matrix_rank`.
+  if np.rank(self.data) != 1 or np.rank(self.row) != 1 or np.rank(self.col) != 1:
+(1061, 55, 1439, 445)
+classification_report:
+             precision    recall  f1-score   support
+
+         -1       0.76      0.96      0.85      1494
+          1       0.95      0.70      0.81      1506
+
+avg / total       0.86      0.83      0.83      3000
+
+--------------------***99nt**-----------------------------------------
+python src/7_training.py  final/comb/positive/features/Vector_Comb_CP_TIS_99.tab final/comb/negative/features/Vector_Comb_CP_TIS_99.tab final/comb/training/ 5000 Y combModelBin9_Win99_5000.pkl
+argument are ok 
+shuffling
+splitting
+fitting
+save model to disk final/comb/training/combModelBin9_Win99_5000.pkl
+predict
+metrics
+===================
+0.938333333333
+===================
+/usr/lib/python2.7/dist-packages/scipy/sparse/coo.py:200: VisibleDeprecationWarning: `rank` is deprecated; use the `ndim` attribute or function instead. To find the rank of a matrix see `numpy.linalg.matrix_rank`.
+  if np.rank(self.data) != 1 or np.rank(self.row) != 1 or np.rank(self.col) != 1:
+(1402, 81, 1413, 104)
+classification_report:
+             precision    recall  f1-score   support
+
+         -1       0.93      0.95      0.94      1494
+          1       0.95      0.93      0.94      1506
+
+avg / total       0.94      0.94      0.94      3000

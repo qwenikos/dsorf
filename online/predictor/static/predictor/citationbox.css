@@ -1,0 +1,10 @@
+.citation-box{
+	background-color: #E6EFFC;
+    border: 1px solid #B2CEF8;
+	color: #337ab7;
+	font-size: 0.8em;
+	text-align: justify;
+	padding: 5px;
+	border-radius: 5px;
+    margin-bottom: 10px;
+}

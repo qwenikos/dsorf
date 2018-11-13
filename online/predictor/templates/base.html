@@ -1,0 +1,93 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-param" content="_csrf">
+        <meta name="csrf-token" content="YnF6WUMzVGFVFDchMl42NgM8Nj8FexkoFhkNGiREYAIpRjIuAlI8MA==">
+        <title>DIANA tools - D-sORF</title>
+        
+        <link type="image/png" "http://carolina.imis.athena-innovation.gr/diana_tools/web/favicon.ico" rel="icon">
+        <!--
+        <link href="http://carolina.imis.athena-innovation.gr/diana_tools/web/assets/d66a4bf/css/bootstrap.css" rel="stylesheet">
+        <link href="http://carolina.imis.athena-innovation.gr/diana_tools/web/css/layouts/diana_blue.css" rel="stylesheet">
+        
+        <link href="{% static 'predictor/citationbox.css' %}" rel="stylesheet">-->
+        <link rel="stylesheet" href="/static/predictor/citationbox.css">
+        <link rel="stylesheet" href="/static/predictor/sticky-footer-navbar.css">
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <a class="navbar-brand" href="#">DIANA tools</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Tools</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <!--<li class="nav-item">
+                            <a class="nav-link disabled" href="#">Disabled</a>
+                        </li>-->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <header>
+            
+
+            <nav class = "navbar navbar-inverse navbar-fixed-top" id="navbar_whole">
+                <div class="navbar-header">
+                    <button type= "button" class = "navbar-toggle collapsed" data-toggle = "collapse" data-target= "#navbar" aria-expanded="false" aria-controls = "navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">DIANA tools</a>
+                </div>
+                
+                <div id= "navbar" class="navbar-collapse collapse">
+                    <ul id="w1" class="navbar-nav navbar-right nav">
+                        <li><a href="">Home</a></li>
+                        <li><a href="/diana_tools/web/index.php?r=site%2Ftools">Tools</a></li>
+                        <li><a href="/diana_tools/web/index.php?r=site%2Fabout">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        
+        <main role="main" class="container">
+        
+            {% block content %}
+            {% endblock %}
+        </main>       
+            
+
+        <footer class="footer">
+            <div class="container">
+                <span class="text-muted">
+                    &copy; 2018 <a href="http://www.inf.uth.gr/?lang=en" target="_blank">Univ. of Thessaly</a> & <a href="http://www.pasteur.gr/?lang=en">Pasteur Institute</a> 
+                    taratata
+                    Powered by <a href="https://www.djangoproject.com/" rel="external">django Framework</a>
+                </span>
+            </div>
+        </footer>
+    </body>
+<html>
+    
+    

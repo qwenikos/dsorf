@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-4 blue-tool-header text-center">    
+            <a href="">OnLine D-sORF Predictor</a>
+            
+            <form method="POST">
+                {% csrf_token %}
+
+                   <!--{{ form|crispy}} -->
+                <div class="row text-left">
+                    <div class="col-md-6 mt-3">
+                    {{ form.modelFormItem|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6 mt-3" >
+                    {{ form.bypassSignalPepFormItem|as_crispy_field }}
+                    </div>
+                    <div class="col-md-12 mt-3 " >
+                    {{ form.sORFSequenceFormItem|as_crispy_field }}
+                    </div>
+                    <div class="col-md-12 mt-4" >
+                    {{ form.fileNameFormItem|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6 mt-3">
+                    {{ form.ATGStartingPosFormItem|as_crispy_field }}
+                    <small class="text-muted">Give the ATG starting page in submited seq</small>
+                    </div>
+                    <div class="col-md-6 mt-3">
+                    {{ form.simulateLength|as_crispy_field }}
+                    <small class="text-muted">In order to select only part of uplodaed sORFS</small>
+                    </div> 
+                    <div class="col-md-6 align=center " >
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </div>  
+{% endblock %}
+
+
