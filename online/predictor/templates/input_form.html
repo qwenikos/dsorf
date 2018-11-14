@@ -3,82 +3,51 @@
 {% load static %}
 
 {% block content %}
-    <div class="row border col-md-12  text-center h-75 w-75" >
+    <div class="row border col-md-12  text-center w-75" >
         <div class="col-md-12   text-center border mt-3 bg-dark text-white ">    
             <a href="">OnLine D-sORF Predictor</a>
         </div>
         <div class="col-md-12   text-center border mt-3">
-            <form method="POST" id="ajax_input_form" enctype="multipart/form-data">
+            <form method="POST"  enctype="multipart/form-data">
                 {% csrf_token %}
     
                    <!--{{ form|crispy}} -->
                 <div class="row text-left border">
-                    <div class="col-md-7  border align-middle">
-                    {{ form.emailFormItem|as_crispy_field }}
-                    </div>
                     
-                    <div class="col-md-6 border align-middle">
-                    {{ form.modelFormItem|as_crispy_field }}
+                    <div class="col-md-6  border align-middle">
+                      {{ form.emailFormItem|as_crispy_field }}
                     </div>
-                    <div class="col-md-6  border  row align-items-center " >
-                    {{ form.bypassSignalPepFormItem|as_crispy_field }}
+                    <div class="col-md-3 border align-middle">
+                       {{ form.modelFormItem|as_crispy_field }}
+                    </div>
+                    <div class="col-md-3  border  row align-items-center " >
+                      {{ form.bypassSignalPepFormItem|as_crispy_field }}
                     </div>
                     
                     <div class="col-md-12 col-md-offset-2  border" >
-                    {{ form.sORFSequenceFormItem|as_crispy_field }}
+                      {{ form.sORFSequenceFormItem|as_crispy_field }}
                     </div>
                     
-                    <div class=" col-md-6    border" >
-                    {{ form.fileNameFormItem|as_crispy_field }}
-                    </div>
-                    <div class="col-md-6  border">
-                    {{ form.ATGStartingPosFormItem|as_crispy_field }}
-                    <small class="text-muted">Give the ATG starting page in submited seq</small>
+                    <div class=" col-md-12    border" >
+                        {{ form.fileNameFormItem|as_crispy_field }}
                     </div>
                     
                     <div class="col-md-6  border">
-                    {{ form.simulateLength|as_crispy_field }}
-                    <small class="text-muted">In order to select only part of uplodaed sORFS</small>
-                    </div> 
-                    <div class="col-md-6   row align-items-center border" >
+                        {{ form.ATGStartingPosFormItem|as_crispy_field }}
+                        <!--<small class="text-muted">Give the ATG starting page in submited seq</small>-->
+                    </div>
+                    <div class="col-md-6  border">
+                        {{ form.simulateLength|as_crispy_field }}
+                        <!--<small class="text-muted">In order to select only part of uplodaed sORFS</small>-->
+                    </div>
+                    
+                    <div class="offset-8 col-md-4 align-right  border" >
                         <button type="submit" class="btn btn-success">Submit</button>
                         
                     </div>
                 </div>
             </form>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script type="text/javascript">
-             // form upload
-             $('#ajax_input_form').submit(function(e){
-                 e.preventDefault();
-                 alert("upload javascript");
-                 $form = $(this)
-                 var formData = new FormData(this);
-                 $.ajax({
-                     url: window.location.pathname,
-                     type: 'POST',
-                     data: formData,
-                     success: function (response) {
-                         $('.error').remove();
-                         console.log(response)
-                         if(response.error){
-                             $.each(response.errors, function(name, error){
-                                 error = '<small class="text-muted error">' + error + '</small>'
-                                 $form.find('[name=' + name + ']').after(error);
-                             })
-                         }
-                         else{
-                             alert(response.message)
-                             window.location = ""
-                         }
-                     },
-                     cache: false,
-                     contentType: false,
-                     processData: false
-                 });
-             });
-             // end
-            </script>
+
         </div>
             
     </div>  

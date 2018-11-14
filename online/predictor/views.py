@@ -6,7 +6,11 @@ from django.shortcuts import render, redirect
 from .forms import inputForm
 import os
 
-
+def handle_uploaded_file(f,filename):
+    with open('./'+filename, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+            
 def input_form(request):
     #return render(request, 'input_form.html')
     if request.method == 'GET':
@@ -16,7 +20,15 @@ def input_form(request):
         form = inputForm(request.POST, request.FILES)
         print("POST")
         if form.is_valid():
-            form.save()
+            print ("(%%%%%%%%%%%%%%%%%%%%%%%%%)")
+            form.save() ##in db
+            print (request.FILES["fileNameFormItem"])
+            uploaderFileName=request.FILES["fileNameFormItem"]
+            email=form.cleaned_data['emailFormItem'] 
+            newFileName=email.replace("@","_at_")+"__"+str(uploaderFileName)
+            print (newFileName)
+            newFile=handle_uploaded_file(request.FILES['fileNameFormItem'],newFileName)
+            
             return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})
             print ("-------------------------------------------------------")
             print ("A Valid form is submitted")
@@ -86,9 +98,11 @@ def input_form(request):
                 html='{% extends "base.html" %}<html><body><h1>DsOLF results</h1>'+html+'</html></body>'
                 return HttpResponse(html)
             else:
-                print("form is invalid")
-                return JsonResponse({'error': True, 'errors': form.errors})
-                print(form.errors)
+                print ("input Type error")
+        else:
+            print("form is invalid")
+            return JsonResponse({'error': True, 'errors': form.errors})
+            print(form.errors)
 
 
     return render(request, "input_form.html", {'form': form})
