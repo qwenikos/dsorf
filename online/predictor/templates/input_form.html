@@ -18,7 +18,7 @@
                       {{ form.emailFormItem|as_crispy_field }}
                     </div>
                     <div class="col-md-3 border align-middle">
-                       {{ form.modelFormItem|as_crispy_field }}
+                       {{ form.modeFormItem|as_crispy_field }}
                     </div>
                     <div class="col-md-3  border  row align-items-center " >
                       {{ form.bypassSignalPepFormItem|as_crispy_field }}
@@ -53,7 +53,7 @@
             </form>
             <script>
             function Hide() {
-                if(document.getElementById('id_inputTypeFormItem').options[document.getElementById('id_inputTypeFormItem').selectedIndex].value == "1") {
+                if(document.getElementById('id_inputTypeFormItem').options[document.getElementById('id_inputTypeFormItem').selectedIndex].value == "True") {
 
                      document.getElementById('div_id_sORFSequenceFormItem').style.display = '';
                      document.getElementById('div_id_fileNameFormItem').style.display = 'none';
@@ -64,7 +64,8 @@
             }
             
             window.onload = function() {
-                document.getElementById('id_inputTypeFormItem').onchange = Hide;              
+                //document.getElementById('id_inputTypeFormItem').onchange = Hide;
+                document.getElementById('id_inputTypeFormItem').onmouseup = Hide;              
                 document.getElementById('div_id_fileNameFormItem').style.display = 'none';
 
             };

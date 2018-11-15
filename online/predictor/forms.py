@@ -5,18 +5,18 @@ from .models import inputModel
 class inputForm(forms.ModelForm):
     class Meta:
         model=inputModel
-        fields=("emailFormItem","modelFormItem","bypassSignalPepFormItem","inputTypeFormItem",
+        fields=("emailFormItem","modeFormItem","bypassSignalPepFormItem","inputTypeFormItem",
                 "sORFSequenceFormItem","fileNameFormItem",
                 "ATGStartingPosFormItem","simulateLength",)
         
-        widgets={"modelFormItem":forms.Select(),
+        widgets={"modeFormItem":forms.Select(),
                  "inputTypeFormItem":forms.Select(),
             # "bypassSignalPepFormItem":forms.BooleanField(),
             "sORFSequenceFormItem":forms.Textarea,     
         }
         
         # labels={"emailFormItem":"your email",
-        #         "modelFormItem":"Select Model",
+        #         "modeFormItem":"Select Model",
         #         "bypassSignalPepFormItem":'Bypass Signal Peptide',
         #         "sORFSequenceFormItem":'Give sORF Sequence',
         #         "fileNameFormItem":"or upload Filename",
@@ -25,7 +25,7 @@ class inputForm(forms.ModelForm):
         # }
         
         labels={"emailFormItem":"",
-                "modelFormItem":"",
+                "modeFormItem":"",
                 "bypassSignalPepFormItem":'',
                 "inputTypeFormItem":'',
                 "sORFSequenceFormItem":'',
@@ -35,7 +35,7 @@ class inputForm(forms.ModelForm):
         }        
         
         help_texts = {"emailFormItem":"your email",
-            "modelFormItem":"Select Model",
+            "modeFormItem":"Select Mode",
             "bypassSignalPepFormItem":'Bypass Signal Peptide',
             "inputTypeFormItem":'Select sequence TExt or File ',
             "sORFSequenceFormItem":'Give sORF Sequence',

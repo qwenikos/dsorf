@@ -21,3 +21,5 @@ sudo apt-get update && sudo apt-get install sqlitebrowser
 
 #if you like to remove it
 sudo apt-get remove sqlitebrowser
+
+## in model blank=True means required=False for derived form

@@ -1,12 +1,12 @@
 from django.shortcuts import render
-
+from django.http import JsonResponse
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .forms import inputForm
 import os
 
-def handle_uploaded_file(f,filename):
+def save_uploaded_file(f,filename):
     with open('./'+filename, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
@@ -20,53 +20,82 @@ def input_form(request):
         form = inputForm(request.POST, request.FILES)
         print("POST")
         if form.is_valid():
-            print ("(%%%%%%%%%%%%%%%%%%%%%%%%%)")
-            form.save() ##in db
-            print (request.FILES["fileNameFormItem"])
-            uploaderFileName=request.FILES["fileNameFormItem"]
-            email=form.cleaned_data['emailFormItem'] 
-            newFileName=email.replace("@","_at_")+"__"+str(uploaderFileName)
-            print (newFileName)
-            newFile=handle_uploaded_file(request.FILES['fileNameFormItem'],newFileName)
-            
-            
+            print ("(%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%)")
             print ("-------------------------------------------------------")
-            print ("A Valid form is submitted")
+            print ("              A Valid form is submitted                ")
             print ("-------------------------------------------------------")
-            inputTypeFormItem=form.cleaned_data['inputTypeFormItem']
-            print ("inputTypeFormItem",inputTypeFormItem)
+            email               =   form.cleaned_data['emailFormItem']
+            mode                =   form.cleaned_data['modeFormItem'] 
+            bypassSignalPep     =   form.cleaned_data['bypassSignalPepFormItem']
+            inputTypeFormItem   =   form.cleaned_data['inputTypeFormItem']
+            sORFSequence        =   form.cleaned_data['sORFSequenceFormItem']
+            fileName            =   form.cleaned_data['fileNameFormItem']
+            ATGStartingPos      =   form.cleaned_data['ATGStartingPosFormItem']
             
-            model=form.cleaned_data['modelFormItem'] 
-            bypassSignalPep=form.cleaned_data['bypassSignalPepFormItem']
-            sORFSequence=form.cleaned_data['sORFSequenceFormItem']
-            fileName=form.cleaned_data['fileNameFormItem']
-            ATGStartingPos=form.cleaned_data['ATGStartingPosFormItem']
-            
-            sORFLength=len(sORFSequence)-int(ATGStartingPos)
-            #print >>sys.stderr, 'Goodbye, cruel world!'
-            print ("sORF sequence Length ---->"+str(sORFLength))
             if inputTypeFormItem==True:
-                print("--->Seq")
-            if inputTypeFormItem==False:
-                print("--->File")
+                inputType='0'
+            else:
+                inputType='1'
+                
+            if inputTypeFormItem==True and sORFSequence=="":
+                return JsonResponse({'error': True, 'message': 'Type=Text, Text=Empty'})
+ 
+                
+            if inputTypeFormItem==False and fileName==None:
+                return JsonResponse({'error': True, 'message': 'Type=File, File=None'})
+ 
                 
                 
-            
-   
-            pathToDsORF="D-sORF_v1.1/DsORF/"
-            outputDir="web"
-            inputSeq=sORFSequence
-            numOfProcess="1"
-            mode=model
-            startingPos=str(ATGStartingPos)
             if bypassSignalPep==False:
                 bypassSignalPeptide="0"
             else:
                 bypassSignalPeptide="1"
                 
+            if   (int(mode)==1)  : modelClass = "COMB"
+            elif (int(mode)==2)  : modelClass = "CP"
+            elif (int(mode)==3)  : modelClass = "TIS"            
+            
+            ### START database save ####
+            initial_obj = form.save(commit=False)
+            initial_obj.save()
+            savedFileName1=initial_obj.fileNameFormItem
+            savedFileName2=initial_obj.fileNameFormItem.url
+            if savedFileName2[0]=="/":
+                savedFileName2=savedFileName2[1:]
+            print(savedFileName1)
+            print(savedFileName2)
+            form.save() ##in db
+            ### END database save  ###
+            
+            #return JsonResponse({'Stop': "Stop"})
+            
+            ### START save outside ###
+            #uploaderFileName=request.FILES["fileNameFormItem"]
+            # newFileName=email.replace("@","_at_")+"__"+str(uploaderFileName)
+            # newFile=save_uploaded_file(request.FILES['fileNameFormItem'],newFileName)
+            ### END save outside ###
+            
+            
+            #return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})
+            
+
+
+            
+            #print >>sys.stderr, 'Goodbye, cruel world!'
+            
+            
+            ##### START DsORF parameters #####
+            pathToDsORF="D-sORF_v1.1/DsORF/"
+            outputDir="web"
+            inputSeq=sORFSequence
+            numOfProcess="1"
+            startingPos=str(ATGStartingPos)
+            ##### END DsORF parameters #####
+               
             ##################
             uid="1002"
             ##################
+            
             configFileName="default"
             simulateLength="0"
             print ("---------------------------")
@@ -77,31 +106,29 @@ def input_form(request):
             print ("numOfProcess >>"+numOfProcess)
             print ("mode >>"+mode)
             print ("startingPos >>"+startingPos)
-            print ("bypassSignalPep >>"+bypassSignalPep)
+            print ("bypassSignalPep >>"+str(bypassSignalPep))
             print ("bypassSignalPeptide >>"+bypassSignalPeptide)
             print ("configFileName >>"+configFileName)
             print ("simulateLength >>"+simulateLength)
             print ("---------------------------")
             print ("uid>>"+uid)
+
             resultsDir=pathToDsORF+"output"+"/"+outputDir+"/"+uid+"/"
-            if inputTypeFormItem==True:
-                inputType='0'
-            else:
-                inputType='1'
+
 
             if inputType=='0': ##sequence
-                
+                print ("continue with sequence")
+                sORFLength=len(sORFSequence)-int(ATGStartingPos)
+                print ("sORFLength",sORFLength)
                 command= "python "+ pathToDsORF + "DsORF_init.py" +" "+ inputSeq + " " + outputDir+" "+numOfProcess+" "+mode+" " +startingPos+" "+bypassSignalPeptide +" "+configFileName+" "+simulateLength+" "+inputType+" "+uid
-                
+                print ("----+++------")
                 print (command)
                 print ("-----------DsORF_init.py---START-------------")
                 os.system(command)
                 print ("-----------DsORF_init.py---END-------------")
                 
                 #return HttpResponseRedirect('/results/')
-                if   (int(mode)==1)  : modelClass = "COMB"
-                elif (int(mode)==2)  : modelClass = "CP"
-                elif (int(mode)==3)  : modelClass = "TIS"
+
                 html=""
                 resultsFileName=resultsDir+modelClass+'_stats'
                 resultsFile=open(resultsFileName,"r")
@@ -110,9 +137,16 @@ def input_form(request):
                 html='{% extends "base.html" %}<html><body><h1>DsOLF results</h1>'+html+'</html></body>'
                 return HttpResponse(html)
                 #return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})
-            else:
+            
+            elif inputType=='1':
                 ### if file is uploader
                 print ("continue with file")
+                command= "python "+ pathToDsORF + "DsORF_init.py" +" "+ str(savedFileName2) + " " + outputDir+" "+numOfProcess+" "+mode+" " +startingPos+" "+bypassSignalPeptide +" "+configFileName+" "+simulateLength+" "+inputType+" "+uid
+                print ("----+++------")
+                print (command)
+                print ("-----------DsORF_init.py---START-------------")
+                os.system(command)
+                print ("-----------DsORF_init.py---END-------------")
         else:
             print("form is invalid")
             return JsonResponse({'error': True, 'errors': form.errors})
@@ -130,18 +164,18 @@ def index(request):
     return render(request, 'index.html')
 
 
-from django.shortcuts import render
-from django.http import JsonResponse
-from .forms import inputForm
+# from django.shortcuts import render
 
-def django_image_and_file_upload_ajax(request):
-    if request.method == 'POST':
-       form = inputForm(request.POST, request.FILES)
-       if form.is_valid():
-           form.save()
-           return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})
-       else:
-           return JsonResponse({'error': True, 'errors': form.errors})
-    else:
-        form = inputForm()
-        return render(request, 'django_image_upload_ajax.html', {'form': form})
+# from .forms import inputForm
+
+# def django_image_and_file_upload_ajax(request):
+#     if request.method == 'POST':
+#        form = inputForm(request.POST, request.FILES)
+#        if form.is_valid():
+#            form.save()
+#            return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})
+#        else:
+#            return JsonResponse({'error': True, 'errors': form.errors})
+#     else:
+#         form = inputForm()
+#         return render(request, 'django_image_upload_ajax.html', {'form': form})
