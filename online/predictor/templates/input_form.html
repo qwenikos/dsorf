@@ -8,7 +8,7 @@
             <a href="">OnLine D-sORF Predictor</a>
         </div>
         <div class="col-md-12   text-center border mt-3">
-            <form method="POST"  enctype="multipart/form-data">
+            <form method="POST" action="{%url 'input_form' %}"  enctype="multipart/form-data">
                 {% csrf_token %}
     
                    <!--{{ form|crispy}} -->
@@ -23,12 +23,16 @@
                     <div class="col-md-3  border  row align-items-center " >
                       {{ form.bypassSignalPepFormItem|as_crispy_field }}
                     </div>
+                
+                    <div class="col-md-3 col-md-offset-9 border  " >
+                      {{ form.inputTypeFormItem|as_crispy_field }}
+                    </div>
                     
-                    <div class="col-md-12 col-md-offset-2  border" >
+                    <div class="col-md-12 col-md-offset-2  border " >
                       {{ form.sORFSequenceFormItem|as_crispy_field }}
                     </div>
                     
-                    <div class=" col-md-12    border" >
+                    <div class=" col-md-12    border " >
                         {{ form.fileNameFormItem|as_crispy_field }}
                     </div>
                     
@@ -47,7 +51,24 @@
                     </div>
                 </div>
             </form>
+            <script>
+            function Hide() {
+                if(document.getElementById('id_inputTypeFormItem').options[document.getElementById('id_inputTypeFormItem').selectedIndex].value == "1") {
 
+                     document.getElementById('div_id_sORFSequenceFormItem').style.display = '';
+                     document.getElementById('div_id_fileNameFormItem').style.display = 'none';
+                } else {
+                     document.getElementById('div_id_sORFSequenceFormItem').style.display = 'none';
+                     document.getElementById('div_id_fileNameFormItem').style.display = '';
+                }
+            }
+            
+            window.onload = function() {
+                document.getElementById('id_inputTypeFormItem').onchange = Hide;              
+                document.getElementById('div_id_fileNameFormItem').style.display = 'none';
+
+            };
+            </script>
         </div>
             
     </div>  

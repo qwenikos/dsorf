@@ -5,11 +5,12 @@ from .models import inputModel
 class inputForm(forms.ModelForm):
     class Meta:
         model=inputModel
-        fields=("emailFormItem","modelFormItem","bypassSignalPepFormItem",
+        fields=("emailFormItem","modelFormItem","bypassSignalPepFormItem","inputTypeFormItem",
                 "sORFSequenceFormItem","fileNameFormItem",
                 "ATGStartingPosFormItem","simulateLength",)
         
         widgets={"modelFormItem":forms.Select(),
+                 "inputTypeFormItem":forms.Select(),
             # "bypassSignalPepFormItem":forms.BooleanField(),
             "sORFSequenceFormItem":forms.Textarea,     
         }
@@ -26,6 +27,7 @@ class inputForm(forms.ModelForm):
         labels={"emailFormItem":"",
                 "modelFormItem":"",
                 "bypassSignalPepFormItem":'',
+                "inputTypeFormItem":'',
                 "sORFSequenceFormItem":'',
                 "fileNameFormItem":"",
                 "ATGStartingPosFormItem":"",
@@ -35,6 +37,7 @@ class inputForm(forms.ModelForm):
         help_texts = {"emailFormItem":"your email",
             "modelFormItem":"Select Model",
             "bypassSignalPepFormItem":'Bypass Signal Peptide',
+            "inputTypeFormItem":'Select sequence TExt or File ',
             "sORFSequenceFormItem":'Give sORF Sequence',
             "fileNameFormItem":"or upload Filename",
             "ATGStartingPosFormItem":'ATG starting position',

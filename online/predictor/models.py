@@ -14,6 +14,9 @@ class inputModel(models.Model):
     
     SOME_CHOICES=[(True,'signalPeptideBypassFormItem'),(False,'NotsignalPeptideBypassFormItem')]
     bypassSignalPepFormItem = models.BooleanField(choices=SOME_CHOICES,default=False)
+    
+    SEQ_FILE_CHOISES=[(True,'Sequence'),(False,'File')]
+    inputTypeFormItem=models.BooleanField(choices=SEQ_FILE_CHOISES,default=False)
 
     # alphanumeric = RegexValidator(r'^[A-Z]*$', 'Only alphanumeric characters are allowed.')
     sORFSequenceFormItem = models.CharField(max_length=255)

@@ -29,10 +29,13 @@ def input_form(request):
             print (newFileName)
             newFile=handle_uploaded_file(request.FILES['fileNameFormItem'],newFileName)
             
-            return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})
+            
             print ("-------------------------------------------------------")
             print ("A Valid form is submitted")
             print ("-------------------------------------------------------")
+            inputTypeFormItem=form.cleaned_data['inputTypeFormItem']
+            print ("inputTypeFormItem",inputTypeFormItem)
+            
             model=form.cleaned_data['modelFormItem'] 
             bypassSignalPep=form.cleaned_data['bypassSignalPepFormItem']
             sORFSequence=form.cleaned_data['sORFSequenceFormItem']
@@ -42,43 +45,52 @@ def input_form(request):
             sORFLength=len(sORFSequence)-int(ATGStartingPos)
             #print >>sys.stderr, 'Goodbye, cruel world!'
             print ("sORF sequence Length ---->"+str(sORFLength))
-            
-            inputType="0"
-
-            if inputType=="0": ##sequence
+            if inputTypeFormItem==True:
+                print("--->Seq")
+            if inputTypeFormItem==False:
+                print("--->File")
                 
-                pathToDsORF="D-sORF_v1.1/DsORF/"
-                outputDir="web"
-                inputSeq=sORFSequence
-                numOfProcess="1"
-                mode=model
-                startingPos=str(ATGStartingPos)
-                if bypassSignalPep==False:
-                    bypassSignalPeptide="0"
-                else:
-                    bypassSignalPeptide="1"
-                    
-                ##################
-                uid="1002"
-                ##################
-                configFileName="default"
-                simulateLength="0"
-                print ("---------------------------")
-                print ("inputType >>"+inputType)
-                print ("pathToDsORF >>"+pathToDsORF)
-                print ("outputDir >>"+outputDir)
-                print ("inputSeq >>"+inputSeq)
-                print ("numOfProcess >>"+numOfProcess)
-                print ("mode >>"+mode)
-                print ("startingPos >>"+startingPos)
-                print ("bypassSignalPep >>"+bypassSignalPep)
-                print ("bypassSignalPeptide >>"+bypassSignalPeptide)
-                print ("configFileName >>"+configFileName)
-                print ("simulateLength >>"+simulateLength)
-                print ("---------------------------")
-                print ("uid>>"+uid)
-                resultsDir=pathToDsORF+"output"+"/"+outputDir+"/"+uid+"/"
+                
+            
+   
+            pathToDsORF="D-sORF_v1.1/DsORF/"
+            outputDir="web"
+            inputSeq=sORFSequence
+            numOfProcess="1"
+            mode=model
+            startingPos=str(ATGStartingPos)
+            if bypassSignalPep==False:
+                bypassSignalPeptide="0"
+            else:
+                bypassSignalPeptide="1"
+                
+            ##################
+            uid="1002"
+            ##################
+            configFileName="default"
+            simulateLength="0"
+            print ("---------------------------")
+            print ("inputType >>"+inputType)
+            print ("pathToDsORF >>"+pathToDsORF)
+            print ("outputDir >>"+outputDir)
+            print ("inputSeq >>"+inputSeq)
+            print ("numOfProcess >>"+numOfProcess)
+            print ("mode >>"+mode)
+            print ("startingPos >>"+startingPos)
+            print ("bypassSignalPep >>"+bypassSignalPep)
+            print ("bypassSignalPeptide >>"+bypassSignalPeptide)
+            print ("configFileName >>"+configFileName)
+            print ("simulateLength >>"+simulateLength)
+            print ("---------------------------")
+            print ("uid>>"+uid)
+            resultsDir=pathToDsORF+"output"+"/"+outputDir+"/"+uid+"/"
+            if inputTypeFormItem==True:
+                inputType='0'
+            else:
+                inputType='1'
 
+            if inputType=='0': ##sequence
+                
                 command= "python "+ pathToDsORF + "DsORF_init.py" +" "+ inputSeq + " " + outputDir+" "+numOfProcess+" "+mode+" " +startingPos+" "+bypassSignalPeptide +" "+configFileName+" "+simulateLength+" "+inputType+" "+uid
                 
                 print (command)
@@ -97,8 +109,10 @@ def input_form(request):
                     html+=aLine+"<br>"
                 html='{% extends "base.html" %}<html><body><h1>DsOLF results</h1>'+html+'</html></body>'
                 return HttpResponse(html)
+                #return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})
             else:
-                print ("input Type error")
+                ### if file is uploader
+                print ("continue with file")
         else:
             print("form is invalid")
             return JsonResponse({'error': True, 'errors': form.errors})
