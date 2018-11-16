@@ -57,15 +57,11 @@ def input_form(request):
             elif (int(mode)==3)  : modelClass = "TIS"            
             
             ### START database save ####
-            initial_obj = form.save(commit=False)
-            initial_obj.save()
-            savedFileName1=initial_obj.fileNameFormItem
-            savedFileName2=initial_obj.fileNameFormItem.url
-            if savedFileName2[0]=="/":
-                savedFileName2=savedFileName2[1:]
-            print(savedFileName1)
-            print(savedFileName2)
-            form.save() ##in db
+            form_initial_obj = form.save(commit=False)
+            form_initial_obj.save()
+            form.save()
+
+             ##in db
             ### END database save  ###
             
             #return JsonResponse({'Stop': "Stop"})
@@ -140,9 +136,13 @@ def input_form(request):
                 #return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})
             
             elif inputType=='1':
+                savedFileName=form_initial_obj.fileNameFormItem.url
+                if savedFileName[0]=="/":
+                    savedFileName=savedFileName[1:]
+                print(savedFileName)
                 ### if file is uploader
                 print ("continue with file")
-                command= "python "+ pathToDsORF + "DsORF_init.py" +" "+ str(savedFileName2) + " " + outputDir+" "+numOfProcess+" "+mode+" " +startingPos+" "+bypassSignalPeptide +" "+configFileName+" "+simulateLength+" "+inputType+" "+uid
+                command= "python "+ pathToDsORF + "DsORF_init.py" +" "+ str(savedFileName) + " " + outputDir+" "+numOfProcess+" "+mode+" " +startingPos+" "+bypassSignalPeptide +" "+configFileName+" "+simulateLength+" "+inputType+" "+uid
                 print ("----+++------")
                 print (command)
                 print ("-----------DsORF_init.py---START-------------")

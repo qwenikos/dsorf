@@ -65,12 +65,41 @@
             
             window.onload = function() {
                 //document.getElementById('id_inputTypeFormItem').onchange = Hide;
-                document.getElementById('id_inputTypeFormItem').onmouseup = Hide;              
+                document.getElementById('div_id_inputTypeFormItem').onmouseup = Hide;              
                 document.getElementById('div_id_fileNameFormItem').style.display = 'none';
+                document.getElementById('id_sORFSequenceFormItem').onchange = someFunction;   
 
             };
+            
+            function someFunction() {
+                var myTextArea = document.getElementById('id_sORFSequenceFormItem');
+                var output = document.getElementById("id_sORFSequenceFormItem").value;
+                output = output.replace(/\s/g, "");
+                //alert(output);
+                myTextArea.value = output;
+                
+                
+            }
             </script>
+            
+            
         </div>
+        <div class="col-md-12   text-center border mt-3">
+            <div class="h2">Try us</div>
+            <div>copy coding sORF sequence to the text area above</div>
+            
+            <div class="border" style="word-wrap:break-word">
+            <span class="text-secondary">CCTGGAG</span>
+            <span class="text-danger" >ATG</span>
+            <span class= "text-info" >GACAAGGAAGAGAACCGGCGCTCGGTGCTGCTGCCCACACACCGGCGGAGGGTAGCTTCAGCTCTGAGAACTACTGGCGCAAGTCATACGAGTCCTCAGAGGACTGCTCTGAGGCAGCAGGCAGCCCTGCCCGAAAGGTGAAGATGCGGCGGCACTGA</span>
+            
+            </div>
+            <!--<div><a href="{% static "sorf_examples/test.fa"}/">download</a> a test file </div>-->
+            <div><a href="/static/predictor/sorf_examples/test.fa">download</a> a test file </div>
+            
+            
+        </div>
+        
             
     </div>  
 {% endblock %}
