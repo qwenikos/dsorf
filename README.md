@@ -1,3 +1,7 @@
+dsorf
+pip3 install numpy
+pip3 install scipy
+
 # dsorf
 install django 
 sudo apt-get install python3-django
@@ -7,6 +11,7 @@ sudo pip3 install Django==2.1.3
 django-admin --version
 install crispy-forms
 pip3 install --user django-crispy-forms
+
 
 After create a new model in django you have to
 Activating models
