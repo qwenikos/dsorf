@@ -4,6 +4,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .forms import inputForm
+from collections import OrderedDict
 import os
 
 def save_uploaded_file(f,filename):
@@ -147,6 +148,23 @@ def input_form(request):
                 print ("-----------DsORF_init.py---START-------------")
                 os.system(command)
                 print ("-----------DsORF_init.py---END-------------")
+                
+                html=""
+                ord_dict = OrderedDict()
+                resultsFileName=resultsDir+modelClass+'_stats'
+                resultsFile=open(resultsFileName,"r")
+                lineNum=0
+                for aLine in resultsFile:
+                    html+=aLine+"<br>"
+                    ord_dict[lineNum]=aLine
+                    lineNum+=1
+                resultFileURL="test.html" 
+                #html='<body><h1>DsOLF results</h1>'+html+'</body>'
+
+                return render(request, 'results.html',{'context': ord_dict,'resultFileURL':resultFileURL,'user_email':email})
+                #return HttpResponse(html)
+                #return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})
+                
         else:
             print("form is invalid")
             return JsonResponse({'error': True, 'errors': form.errors})
@@ -158,7 +176,7 @@ def input_form(request):
 
 
 def results(request):
-    return render(request, 'results.html')
+    return render(request, 'results.html',)
 
 def index(request):
     return render(request, 'index.html')

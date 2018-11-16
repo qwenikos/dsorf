@@ -1,4 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-this is the results
+<table>
+    <h2>Results for  {{user_email}}</h2>
+{% for key, value in context.items %}
+    <tr>
+        <!--<td>{{ key }}</td>-->
+        <td>{{ value }}</td>
+    </tr>
+{% endfor %}
+</table>
+<br>
+<hr>
+Download full results <a href='{{resultFileURL}}'>here</a>
 {% endblock %}
