@@ -127,14 +127,21 @@ def input_form(request):
                 #return HttpResponseRedirect('/results/')
 
                 html=""
+                ord_dict = OrderedDict()
                 resultsFileName=resultsDir+modelClass+'_stats'
                 resultsFile=open(resultsFileName,"r")
+                lineNum=0
                 for aLine in resultsFile:
                     html+=aLine+"<br>"
-                html='{% extends "base.html" %}<html><body><h1>DsOLF results</h1>'+html+'</html></body>'
-                return HttpResponse(html)
+                    ord_dict[lineNum]=aLine
+                    lineNum+=1
+                resultFileURL="test.html" 
+                #html='<body><h1>DsOLF results</h1>'+html+'</body>'
+
+                return render(request, 'results.html',{'context': ord_dict,'resultFileURL':resultFileURL,'user_email':email})
+                #return HttpResponse(html)
                 #return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})
-            
+                
             elif inputType=='1':
                 savedFileName=form_initial_obj.fileNameFormItem.url
                 if savedFileName[0]=="/":

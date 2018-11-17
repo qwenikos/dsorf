@@ -1,6 +1,36 @@
+
+sudo apt-get install python3-pip
+---------------------------------------
+
+##install virtualenv
+
+##python 2.7
+-----------------
+mkdir virtualEnv
+cd virtualEnv/
+virtualenv venv
+sudo apt-get install python3-pip
+
+##to activate
+source venv/bin/activate
+
+##to deactivate
+deactivate
+
+##python3
+--------------
+virtualenv -p python3 venv3
+
+After that you have to install all other package with venv3 activated
+
+
+---------------------------------------
 dsorf
 pip3 install numpy
 pip3 install scipy
+pip install -U scikit-learn
+or
+sudo apt-get install python-skarn
 
 # dsorf
 install django 
