@@ -20,6 +20,10 @@ def input_form(request):
     else:
         form = inputForm(request.POST, request.FILES)
         print("POST")
+        #request.session[0] = 'bar'
+        
+        
+
         if form.is_valid():
             print ("(%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%)")
             print ("-------------------------------------------------------")
