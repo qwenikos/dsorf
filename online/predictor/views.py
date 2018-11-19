@@ -6,12 +6,20 @@ from django.shortcuts import render, redirect
 from .forms import inputForm
 from collections import OrderedDict
 import os
+import base64
+import uuid
 
 def save_uploaded_file(f,filename):
     with open('./'+filename, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
             
+def get_a_uuid():
+    # r_uuid = base64.urlsafe_b64encode(uuid.uuid1().bytes)
+    r_uuid = uuid.uuid1()
+    #print (r_uuid)
+    return str(r_uuid).replace('=', '')
+
 def input_form(request):
     #return render(request, 'input_form.html')
     if request.method == 'GET':
@@ -37,6 +45,7 @@ def input_form(request):
             fileName            =   form.cleaned_data['fileNameFormItem']
             ATGStartingPos      =   form.cleaned_data['ATGStartingPosFormItem']
             
+            
             if inputTypeFormItem==True:
                 inputType='0'
             else:
@@ -49,7 +58,6 @@ def input_form(request):
             if inputTypeFormItem==False and fileName==None:
                 return JsonResponse({'error': True, 'message': 'Type=File, File=None'})
  
-                
                 
             if bypassSignalPep==False:
                 bypassSignalPeptide="0"
@@ -64,7 +72,14 @@ def input_form(request):
             form_initial_obj = form.save(commit=False)
             form_initial_obj.save()
             form.save()
+            
+            user_uuid           =  get_a_uuid()
+            sessionKey          =   request.session.session_key
+            cleanEmailString    =   email.replace("@","_at_")
+            uid=cleanEmailString+"_-_"+str(user_uuid)
+            print(uid)
 
+            
              ##in db
             ### END database save  ###
             
@@ -94,7 +109,7 @@ def input_form(request):
             ##### END DsORF parameters #####
                
             ##################
-            uid="1002"
+            #uid="1002"
             ##################
             
             configFileName="default"
@@ -115,7 +130,8 @@ def input_form(request):
             print ("uid>>"+uid)
 
             resultsDir=pathToDsORF+"output"+"/"+outputDir+"/"+uid+"/"
-
+            resultsFullFileName=resultsDir+mode+""+results
+            statsFullFileName=resultsDir+mode+""+stats
 
             if inputType=='0': ##sequence
                 print ("continue with sequence")
@@ -142,7 +158,7 @@ def input_form(request):
                 resultFileURL="test.html" 
                 #html='<body><h1>DsOLF results</h1>'+html+'</body>'
 
-                return render(request, 'results.html',{'context': ord_dict,'resultFileURL':resultFileURL,'user_email':email})
+                return render(request, 'results.html',{'context': ord_dict,'resultFileURL':resultFileURL,'user_email':email,"resultsFullFileName":resultsFullFileName,"statsFullFileName":statsFullFileName})
                 #return HttpResponse(html)
                 #return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})
                 

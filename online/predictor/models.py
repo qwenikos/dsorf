@@ -7,7 +7,7 @@ from django.db import models
 
 class inputModel(models.Model):
     #from_email = forms.EmailField(required=True)
-    emailFormItem=models.EmailField(max_length=70,blank=True)
+    emailFormItem=models.EmailField(max_length=70,blank=False)
     
     CHOICES=[('1','COMB'),('2','CP'),('3','TIS')]
     modeFormItem = models.CharField(choices=CHOICES,max_length=1,blank=False,default=None)
