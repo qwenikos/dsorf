@@ -58,3 +58,11 @@ sudo apt-get update && sudo apt-get install sqlitebrowser
 sudo apt-get remove sqlitebrowser
 
 ## in model blank=True means required=False for derived form
+
+
+
+
+------------------------------------------------
+install database backed sessions
+add 'django.contrib.sessions' to your INSTALLED_APPS
+run manage.py migrate 
