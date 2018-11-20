@@ -9,5 +9,6 @@ urlpatterns = [
     path('results/', views.results),
     #path('index/',views.index),
     path('',views.index,name='index'),
+    # path('dsorf_output/','dsorf_output/','dsorf_output/'),
     ]
 

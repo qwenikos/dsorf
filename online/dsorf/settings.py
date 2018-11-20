@@ -14,7 +14,12 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DSORF_OUTPUT_DIR="/home/nikos/biothesis/github/dsorf/online/D-sORF_v1.1/DsORF/output/web/"
+# DSORF_OUTPUT_DIR="/home/nikos/biothesis/github/dsorf/online/D-sORF_v1.1/DsORF/output/web/"
+
+# MEDIA_URL = '/uploadedFiles/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'uploadedFiles')
+
+DSORF_BASE_DIR="/home/nikos/biothesis/github/dsorf/online/D-sORF_v1.1/DsORF/"
 
 
 # Quick-start development settings - unsuitable for production

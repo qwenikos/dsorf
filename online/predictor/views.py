@@ -102,7 +102,8 @@ def input_form(request):
             
             
             ##### START DsORF parameters #####
-            pathToDsORF="D-sORF_v1.1/DsORF/"
+            #pathToDsORF="D-sORF_v1.1/DsORF/"
+            pathToDsORF=settings.DSORF_BASE_DIR
             outputDir="web"
             inputSeq=sORFSequence
             numOfProcess="1"
@@ -131,8 +132,10 @@ def input_form(request):
             print ("uid>>"+uid)
 
             resultsDir=pathToDsORF+"output"+"/"+outputDir+"/"+uid+"/"
-            resultsFullFileName="/output/web/"+uid+"/"+modelClass+"_results"
-            statsFullFileName="/output/web/"+uid+"/"+modelClass+"_stats"
+            #resultsFullFileName=resultsDir+modelClass+"_results"
+            #statsFullFileName=resultsDir+modelClass+"_stats"
+            #print (resultsFullFileName)
+            #return JsonResponse({'Stop': "Stop"})
             resultsFullFileName="/static/predictor/output/web/"+uid+"/"+modelClass+"_results"
             statsFullFileName="/static/predictor/output/web/"+uid+"/"+modelClass+"_stats"
 
