@@ -8,6 +8,7 @@ from collections import OrderedDict
 import os
 import base64
 import uuid
+from django.conf import settings
 
 def save_uploaded_file(f,filename):
     with open('./'+filename, 'wb+') as destination:
@@ -130,8 +131,10 @@ def input_form(request):
             print ("uid>>"+uid)
 
             resultsDir=pathToDsORF+"output"+"/"+outputDir+"/"+uid+"/"
-            resultsFullFileName=resultsDir+mode+""+results
-            statsFullFileName=resultsDir+mode+""+stats
+            resultsFullFileName="/output/web/"+uid+"/"+modelClass+"_results"
+            statsFullFileName="/output/web/"+uid+"/"+modelClass+"_stats"
+            resultsFullFileName="/static/predictor/output/web/"+uid+"/"+modelClass+"_results"
+            statsFullFileName="/static/predictor/output/web/"+uid+"/"+modelClass+"_stats"
 
             if inputType=='0': ##sequence
                 print ("continue with sequence")
