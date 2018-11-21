@@ -65,4 +65,8 @@ sudo apt-get remove sqlitebrowser
 ------------------------------------------------
 install database backed sessions
 add 'django.contrib.sessions' to your INSTALLED_APPS
-run manage.py migrate 
+run manage.py migrate
+
+##use  DsORF output directory from django (use directory outside project)
+
+startposition is computed as this submited minus 1

@@ -3,9 +3,23 @@
     {% load static %}
     
     {% block content %}
-        <div class="row border col-md-12  text-center w-75" >
+   
+        <div class="col-md-2 text-left border bg-light" >
+            <div class="col-md-12 text-left border bg-info" >
+            Modes:<br>
+            <ul class="list-unstyled">
+            <li><b>COMBining:</b> use TIS consensus and (CP)Coding Potensial features</li>
+            <li><b>CodingPotencial:</b> Only CP</li>
+            <li><b>TIS concensus:</b> Only TIS</li>
+            </lu>
+            </div>
+            <div class="col-md-12 text-left border bg-info" >
+            <b>Note:</b>COMB and TIS modes nedd at least 7-nt upstream region.
+            </div>
+        </div>
+        <div class=" border col-md-8 " >
             <div class="col-md-12   text-center border mt-3 bg-dark text-white ">    
-                <a href="">OnLine D-sORF Predictor</a>
+                <h2>OnLine D-sORF Predictor</h2>
             </div>
             <div class="col-md-12   text-center border mt-3">
                 <form method="POST" action="{%url 'input_form' %}"  enctype="multipart/form-data">
@@ -51,13 +65,15 @@
             </div>
     
             <div class="col-md-12   text-center border mt-3">
-                <div class="h2">Try us</div>
-                <div>copy the following coding sORF sequence to the text area above</div>
+                <div class="h2 text-info">Try us</div>
+                <div>copy the following coding sORF sequence to the text area above and set upstream region length to 7</div>
                 
                 <div class="border" style="word-wrap:break-word">
-                <span class="text-secondary">CCTGGAG</span>
-                <span class="text-danger" >ATG</span>
-                <span class= "text-info" >GACAAGGAAGAGAACCGGCGCTCGGTGCTGCTGCCCACACACCGGCGGAGGGTAGCTTCAGCTCTGAGAACTACTGGCGCAAGTCATACGAGTCCTCAGAGGACTGCTCTGAGGCAGCAGGCAGCCCTGCCCGAAAGGTGAAGATGCGGCGGCACTGA</span>
+                <!--<span class="text-secondary">CCTGGAG</span>-->
+                <!--<span class="text-danger" >ATG</span>-->
+                <!--<span class= "text-info" >GACAAGGAAGAGAACCGGCGCTCGGTGCTGCTGCCCACACACCGGCGGAGGGTAGCTTCAGCTCTGAGAACTACTGGCGCAAGTCATACGAGTCCTCAGAGGACTGCTCTGAGGCAGCAGGCAGCCCTGCCCGAAAGGTGAAGATGCGGCGGCACTGA</span>-->
+                
+                <i>CCTGGAG</i><b>ATG</b><u>GACAAGGAAGAGAACCGGCGCTCGGTGCTGCTGCCCACACACCGGCGGAGGGTAGCTTCAGCTCTGAGAACTACTGGCGCAAGTCATACGAGTCCTCAGAGGACTGCTCTGAGGCAGCAGGCAGCCCTGCCCGAAAGGTGAAGATGCGGCGGCACTGA</u>
                 
                 </div>
                 <!--<div><a href="{% static "sorf_examples/test.fa"}/">download</a> a test file </div>-->
@@ -96,6 +112,7 @@
                     
                 }
         </script>
+   
     {% endblock %}
     
     

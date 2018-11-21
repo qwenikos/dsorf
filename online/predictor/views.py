@@ -214,19 +214,8 @@ def results(request):
 def index(request):
     return render(request, 'index.html')
 
+def help(request):
+    return render(request, 'help.html')
 
-# from django.shortcuts import render
-
-# from .forms import inputForm
-
-# def django_image_and_file_upload_ajax(request):
-#     if request.method == 'POST':
-#        form = inputForm(request.POST, request.FILES)
-#        if form.is_valid():
-#            form.save()
-#            return JsonResponse({'error': False, 'message': 'Uploaded Successfully'})
-#        else:
-#            return JsonResponse({'error': True, 'errors': form.errors})
-#     else:
-#         form = inputForm()
-#         return render(request, 'django_image_upload_ajax.html', {'form': form})
+def download(request):
+    return render(request, 'download.html')

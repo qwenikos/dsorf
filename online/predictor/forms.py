@@ -40,7 +40,7 @@ class inputForm(forms.ModelForm):
             "inputTypeFormItem":'Select sequence TExt or File ',
             "sORFSequenceFormItem":'Give sORF Sequence',
             "fileNameFormItem":"or upload Filename",
-            "ATGStartingPosFormItem":'ATG starting position',
+            "ATGStartingPosFormItem":'upstream region  length (before ATG )',
             "simulateLength":'Give simulate length (optional)',
         }
         error_messages = {
