@@ -1,12 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-
-    <h2>Notes</h2>
-    <lu> <a href="/input_form/">Online</a> version Limitations
-        <li>User can unput the sequence manualy or by file uploading </li>
-        <li> In case of uploaded file only the first 20 sequence will be processed. For bigger file use the offline ver <a href="/download/">here</a></li>
-        <li>User must supply the position of the start codon in the sequence. A small upstream region is needed for  </li>
-    </lu>
+    <div class="row border offset-md-2 col-md-8 ">
+        <p class="text-center h2">
+        Notes
+        </p>
+    </div>
+    <div class="border offset-md-2 col-md-8 text-left">
+        <ul> <a href="/input_form/">Online</a> version Limitations
+            <li>Manualy input sequence must have a max length of 400 nts (upstream regions +downstream sequence)
+            <li>If Sequences uploaded by file ,the file format must follow FASTA format</li>
+            <li>only the first 20 sequence will be processed from each uploaded file. For bigger file use the offline version <a href="/download/">here</a></li>
+            <li>User must supply the position of the start codon in the sequence. A small upstream region is needed for COMP and TIS mode  </li>
+            <li>Simmulation mode is used to limit the sequence length that algorithm take into account for coding potencial computation</li>
+            <li></li>
+        </ul>
+    </div>
 <!--and  test <a href='{{resultFileURL}}'>here</a>-->
 {% endblock %}
 

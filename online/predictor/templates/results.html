@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="row border offset-md-2 col-md-8 ">
+    <p class="text-center h2">
+    Results for  {{user_email}}
+    </p>
+</div>
+<div class="border offset-md-2 col-md-8 text-left">
 <table>
-    <h2>Results for  {{user_email}}</h2>
 {% for key, value in context.items %}
     <tr>
         <!--<td>{{ key }}</td>-->
@@ -10,10 +15,14 @@
 {% endfor %}
 </table>
 <br>
-<hr>
-Download full results <a href='{{resultsFullFileName}}'>here</a>
-and  Stats <a href='{{statsFullFileName}}'>here</a>
+
+Download full <a href='{{resultsFullFileName}}'>results </a>
+and   <a href='{{statsFullFileName}}'>Stats</a>
 <!--and  test <a href='{{resultFileURL}}'>here</a>-->
+</div>
+<div class="border offset-md-2 col-md-8 text-left">
+    run an other sequence <a href='{{input_form}}'> <--</a>
+</div>
 {% endblock %}
 
 

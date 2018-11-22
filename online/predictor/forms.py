@@ -37,11 +37,11 @@ class inputForm(forms.ModelForm):
         help_texts = {"emailFormItem":"your email",
             "modeFormItem":"Select Mode",
             "bypassSignalPepFormItem":'Bypass Signal Peptide',
-            "inputTypeFormItem":'Select sequence TExt or File ',
-            "sORFSequenceFormItem":'Give sORF Sequence',
-            "fileNameFormItem":"or upload Filename",
-            "ATGStartingPosFormItem":'upstream region  length (before ATG )',
-            "simulateLength":'Give simulate length (optional)',
+            "inputTypeFormItem":'Select Input Type',
+            "sORFSequenceFormItem":'Write sORF Sequence',
+            "fileNameFormItem":"or upload File",
+            "ATGStartingPosFormItem":'upstream region  length (before ATG start )',
+            "simulateLength":'Give simmulation length (optional)',
         }
         error_messages = {
             'emailFormItem': {
